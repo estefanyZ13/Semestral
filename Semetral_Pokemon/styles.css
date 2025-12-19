@@ -1,0 +1,941 @@
+/* ==================== RESET ==================== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Courier New', monospace;
+ 
+  
+}
+
+body{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  /* Fondo con puntitos */
+  background-color:#f5e6d3;
+  background-image: radial-gradient(#000 1px, transparent 1px);
+  background-size:12px 12px;
+}
+
+/* ==================== APP ==================== */
+.app{
+  position:relative;
+  width:420px;
+  min-height:640px;
+}
+
+/* ==================== POKEBALL BACKGROUND ==================== */
+.pokeball-bg{
+  position:absolute;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:-1;
+}
+/* ==================== POKEBOLA GRANDE ==================== */
+
+.pokeball{
+  width:520px;
+  height:520px;
+  border-radius:50%;
+  overflow:hidden;
+  border:10px solid #222;
+  background:#fff;
+  transform: rotate(-15deg);/* ====== POKEBOLA ROTACION INCLINADA  ==== */
+  box-shadow:
+    12px 14px 0 #747070,
+    18px 20px 25px rgba(71, 71, 71, 0.35);
+     position:relative;
+      /* Bordes y sombras */
+    border-width: 4px;
+    border-color: #2d2d2d;
+    
+}
+
+.pokeball-top{
+  height:50%;
+  background:#e74c3c;
+}
+/* ====================    linea del medio ==================== */
+
+.pokeball-middle{
+  height:30px;
+  background:#2d2d2d;
+}
+/* ====================Bola (mitad Blanca)==================== */
+
+.pokeball-bottom{
+  height:50%;
+  background:#fff;
+}
+/* ====================     PEQUEÑA BOLA ==================== */
+
+.pokeball-center{
+  position:absolute;
+  top:54%;
+  left:50%;
+
+  /* TAMAÑO */
+  width:90px;
+  height:90px;
+
+  /* FORMA */
+  border-radius:50%;
+
+  /* COLOR */
+  background:#fff;
+
+  /* BORDE NEGRO */
+  border:10px solid #2d2d2d;
+
+  /* CENTRADO PERFECTO */
+  transform:translate(-50%, -50%);
+
+  /* PROFUNDIDAD */
+  box-shadow: inset 0 4px 0 #ccc;
+
+}
+
+
+/* ==================== HEADER ==================== */
+.header{
+  display:flex;
+  justify-content:center;
+  margin-bottom:40px;
+  
+}
+
+.title{
+  background:#4ecdc4;
+  padding:10px 24px;
+  border:3px solid #080606;
+  border-radius:3px;
+  font-weight:900;
+  letter-spacing:1px;
+  Font-weight:500px;
+  margin-top:52px;
+  /* NUEVO */
+  transform: rotate(-6deg);
+  box-shadow:
+    6px 12px 0 #000000,
+    10px 10px 15px rgba(0,0,0,0.3);
+}
+
+/* ==================== MENU ==================== */
+.menu{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:10px;
+   font-weight: 900;  /* Extra negrita */
+
+}
+
+.menu-item{
+  flex:1;
+  background:#fff;
+  border:3px solid #020202;
+  padding:6px 4px;
+  border-radius:2px;
+  font-size:12px;
+  cursor:pointer;
+    box-shadow:6px 6px 0 #222;
+  transition:all .15s ease;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:100%;              /* 🔥 se alarga horizontalmente */
+}
+
+.menu-active{
+  background:#4ddbd3;
+}
+
+/* ==================== SEARCH AREA ==================== */
+.search-area{
+  display:flex;
+  gap:6px;
+  align-items:center;
+  margin-bottom:10px;
+  
+}
+
+.btn-type{
+  background:#f4d03f;
+  border:3px solid #222;
+  padding:6px 10px;
+  border-radius:3px;
+  font-weight:bold;
+    box-shadow:6px 6px 0 #222;
+
+  transition:all .15s ease;
+}
+
+.input-wrapper{
+  position:relative;
+  flex:1;
+    box-shadow:6px 6px 0 #2e2d2d;
+
+  transition:all .15s ease;
+}
+
+input{
+  width:100%;
+  padding:8px 30px 8px 8px;
+  border:3px solid #222;
+  border-radius:3px;
+
+}
+
+.arrow-buttons{
+  position:absolute;
+  right:2px;
+  top:2px;
+  display:flex;
+  flex-direction:column;
+}
+
+.arrow-btn{
+  background:#ddd;
+  border:2px solid #222;
+  width:24px;
+  height:20px;
+  cursor:pointer;
+}
+/* ==================== BOTÓN FAVORITO CENTRADO ==================== */
+.btn-favorite{
+  position:absolute;
+  top:460px;               /* Ajusta si lo quieres más abajo */
+  left:50%;
+  transform:translateX(-50%);
+  
+  width:44px;
+  height:44px;
+  border-radius:0%;
+  background:rgb(235, 127, 211);
+  border:3px solid #222;
+  
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  cursor:pointer;
+  font-size:20px;
+
+  box-shadow:3px 3px 0 #222;
+  transition:transform .2s, box-shadow .2s;
+  z-index:5;
+}
+/* ===================Puntitos debajo de BTN_FAVORITOS =================== */
+
+.favorite-divider{
+  width:350px;                 /* largo */
+  height:0;                    /* no alto */
+  border-top:3px dotted #000;  /* 👈 línea con puntos */
+  
+  margin:75px auto 0;          /* 👈 ESTO la baja */
+}
+
+/* ===================SECCION FAVORITOS =================== */
+/* ID + nombre en una sola línea */
+.favorite-title{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-weight:bold;
+}
+
+.favorites-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top:12px;
+}
+
+.favorite-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  background:#fff;
+  border:3px solid #222;
+  border-radius:0px;
+  padding:8px 10px;
+
+  box-shadow:4px 4px 0 #222;
+}
+.favorite-content{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.avorite-pokemon-img{
+  width:48px;
+  height:48px;
+  background:#f0f0f0;
+  border:2px solid #222;
+  border-radius:2px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.favorite-pokemon-img img{
+  width:40px;
+}
+
+.favorite-info{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+
+.favorite-id{
+  font-size:11px;
+  font-weight:bold;
+  color:#000000;
+}
+
+.favorite-name{
+  font-size:13px;
+  font-weight:bold;
+}
+.btn-clear-all{
+  margin-top:30px; 
+  color: #000000;  /* 👈 bájalo más */
+}
+/* ===== FORZAR ESTRUCTURA EN FAVORITOS ===== */
+
+.favorite-info{
+  display:flex;
+  align-items:center;
+}
+
+
+/* ID + NOMBRE EN LA MISMA LINEA */
+.favorite-id,
+.favorite-name{
+  font-weight:bold;
+  font-size:14px;
+}
+
+.favorite-id{
+  margin-right:6px;
+}
+
+
+
+
+/* meter ID y nombre juntos */
+.favorite-id::after{
+  content:" ";
+}
+
+/* LINEA DEBAJO */
+.pokemon-divider{
+  width:100%;
+  border-top:2px dotted #000;
+  margin:4px 0;
+}
+
+/* TIPOS DEBAJO */
+.favorite-badges{
+  display:flex;
+  gap:6px;
+}
+
+/* CUADROS NEGROS */
+.favorite-type{
+  background:#000 !important;
+  color:#fff !important;
+  padding:2px 6px;
+  font-size:11px;
+  font-weight:bold;
+  border:1px solid #000;
+}
+
+/* contenedor texto */
+.favorite-text{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+ .btn-remove-favorite{
+  background:#e62424;        /* color de fondo */
+  color:#fff;             /* color del icono */
+  border:2px solid #222;
+  padding:6px 8px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.btn-clear-all{
+  background:lime !important;
+  color:#fff;                /* letras blancas */
+  border:3px solid #000;
+  padding:10px 20px;
+
+  font-weight:bold;
+  font-size:14px;
+  cursor:pointer;
+
+  display:block;
+  margin:20px auto;          /* 👈 centrado abajo */
+
+  box-shadow:4px 4px 0 #000;
+}
+
+
+
+/* Hover */
+.btn-favorite:hover{
+  transform:translateX(-50%) scale(1.1);
+}
+
+/* Cuando es favorito */
+.btn-favorite.is-favorite{
+  background:#d7ddd6;
+  color:white;
+}
+
+/* ==================== CONTENEDOR RELATIVO ==================== */
+.pokemon-card{
+  position:relative; /* 🔑 CLAVE para que el corazón se centre */
+
+ 
+  background:#fff;
+  border:4px solid #222;
+  padding:14px 12px;
+  box-shadow:6px 6px 0 #222;
+}
+
+
+
+
+.btn-search{
+  background:#e74c3c;
+  color:#fff;
+  border:3px solid #222;
+  padding:8px 12px;
+  border-radius:0px;
+  font-weight:bold;
+ 
+   /* SOMBRA */
+  box-shadow:6px 6px 0 #222;
+
+  transition:all .15s ease;
+}
+
+/* ==================== RESULT CARD ==================== */
+.result{
+  margin-top:10px;
+}
+/* ==================== carta donde sale el pokemon=================== */
+
+.pokemon-card{
+    background:#fff;              /* CARTA BLANCA */
+  border:4px solid #222;
+  border-radius:2px;           /* cuadrado suave */
+  padding:16px;
+
+  box-shadow:6px 6px 0 #222;
+}
+/* recuadro de la poke_data  */
+
+
+.pokemon-data-label{
+  position:absolute;
+  top:3px;
+  right:310px;
+color:#f3f8f8;
+  background:#080000;
+  border:2px solid #222;
+  padding:2px 6px;
+
+  font-size:10px;
+  font-weight:bold;
+  letter-spacing:1px;
+
+  box-shadow:2px 2px 0 #222;
+}
+
+
+
+
+.image-container{
+  position:relative;
+  width:220px;
+  height:220px;
+  border:3px solid #000;    /* ✅ marquito fino */
+  margin:10px auto;
+  overflow:hidden;
+}
+
+.pokemon-bg{
+  position:absolute;
+  inset:12px;
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      #ffffff,
+      #ffffff 12px,
+      #e0e0e0 12px,
+      #e0e0e0 24px
+    );
+  border-radius:px;
+  z-index:0;
+}
+
+.pokemon-image{
+  position:relative;
+  z-index:1;
+  width:100px;
+  display:block;
+  margin:auto;
+  margin-top: 50px;
+  
+}
+
+
+
+
+
+.types-container{
+  display:flex;
+  justify-content:center;
+  gap:6px;
+  margin:6px 0;
+}
+
+.type-badge{
+  font-size:11px;
+  padding:4px 10px;
+  border-radius:12px;
+  border:2px solid #222;
+}
+
+
+/* ==================== ESTADISTICA DE LOS POKEMONES==================== */
+.stats-title{
+  text-align:center;
+  font-size:13px;
+  margin:10px 0 6px;
+}
+
+.stat-row{
+  display:grid;
+  grid-template-columns:70px 1fr 30px;
+  gap:6px;
+  align-items:center;
+  font-size:11px;
+}
+
+.stat-bar-container{
+  height:8px;
+  background:#eee;
+  border:2px solid #222;
+}
+
+.stat-bar{
+  height:100%;
+  background:#4ddbd3;
+}
+/* ====================CUADRO DE CRASS==================== */
+/* ===== FORZAR ESTILO TIPOS ===== */
+/* TIPOS EN TARJETA PRINCIPAL */
+.type-badge{
+  background:#000 !important;
+  color:#fff !important;
+  border:2px solid #000 !important;
+  border-radius:2px !important;
+  padding:4px 8px !important;
+  font-size:11px !important;
+  font-weight:bold !important;
+}
+
+.types-container{
+  justify-content:flex-start !important;
+  margin-top:6px !important;
+}
+
+
+
+/* ==================== cadena de evolucion ==================== */
+
+.evolution-section{
+  margin-top:10px;
+  text-align:center;
+}
+
+.evolution-title{
+  font-size:14px;
+  font-weight:bold;
+  margin-bottom:10px;
+  letter-spacing:1px;
+}
+
+.evolution-chain{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.evolution-card{
+
+  width:90px;
+  height:90px;
+  background:#c7f1f1; /* celeste */
+  border:3px solid #222;
+  border-radius:4px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  box-shadow:3px 3px 0 #222;
+  cursor:pointer;
+}
+.evolution-image{
+  width:48px;
+  height:auto;
+  margin-bottom:4px;
+}
+.evolution-name{
+  font-size:10px;
+  font-weight:bold;
+  text-transform:uppercase;
+}
+
+
+ .evolution-arrow{
+  display:inline-block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+}
+
+
+
+
+
+
+/* ==================== VS ==================== *//* ===== VS VIEW ===== */
+.vs-view{
+  margin-top:40px;
+  text-align:center;
+}
+
+/* ===== HEADER ===== */
+.vs-header h2{
+  background:#67e0e0;
+  display:inline-block;
+  padding:8px 20px;
+  border:4px solid #111;
+  transform:rotate(-2deg);
+}
+
+/* ===== SEARCH ===== */
+.vs-search{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  margin:20px 0;
+}
+
+.vs-input{
+  display:flex;
+}
+
+.vs-input input{
+  padding:8px;
+  border:3px solid #111;
+  width:130px;
+}
+
+.vs-input button{
+  background:#ffcc00;
+  color:#fff;
+  border:3px solid #111;
+  padding:8px 12px;
+  cursor:pointer;
+}
+
+.vs-text{
+  font-weight:bold;
+}
+
+/* ===== BATALLA ===== */
+.vs-battle{
+  margin:15px 0;
+}
+
+#btnBattle{
+  background:#555;
+  color:#fff;
+  padding:10px 30px;
+  border:4px solid #111;
+  box-shadow:4px 4px 0 #000;
+}
+/* ===== ORIGEN DE DATOS VS ===== */
+.vs-origin {
+  padding: 6px 10px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 0.5px;
+  border: 2px solid transparent;
+}
+
+/* Desde API */
+.vs-origin.api {
+  background-color: #e3f2fd;
+  color: #1565c0;
+  border-color: #1565c0;
+}
+
+/* Desde Caché */
+.vs-origin.cache {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-color: #2e7d32;
+}
+
+/* Ajustes carta VS */
+.vs-card img {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  margin: 10px auto;
+  display: block;
+}
+
+.vs-card h3 {
+  text-align: center;
+  margin: 6px 0;
+  color: #2c5aa0;
+}
+
+.vs-card p {
+  text-align: center;
+  font-weight: bold;
+}
+
+
+
+/* ===== INFO DEBAJO DEL POKÉMON ===== */
+/* ===== INFO DEBAJO DEL POKÉMON ===== */
+
+.pokemon-info{
+  margin-top:10px;
+}
+
+/* nombre + número */
+.pokemon-name-id{
+  text-align:center;
+ font-weight: 900;  /* Extra negrita */
+  font-size:14px;
+  letter-spacing:1px;
+  margin-bottom:4px;
+  text-align:left;
+  padding-left:6px;
+  font-weight: 900;  /* Extra negrita */
+
+
+}
+
+/* línea negra debajo del nombre */
+.pokemon-divider{
+  height:3px;
+  background:#000;
+  margin-top:14px;       
+  
+}
+
+/* tipo / posición */
+.pokemon-position{
+  font-size:11px;
+  font-weight:bold;
+  text-align:center;
+}
+
+
+.vs-types{
+  display:flex;
+  justify-content:center;
+  gap:6px;
+  margin:8px 0;
+}
+
+.vs-type{
+  padding:4px 8px;
+  font-size:9px;
+  border:2px solid #000;
+  border-radius:4px;
+  background:#eee;
+  text-transform:uppercase;
+}
+
+
+.vs-favorite{
+  margin-top:12px;
+  border:3px solid #000;
+  background:#fff;
+  width:40px;
+  height:40px;
+  font-size:18px;
+  cursor:pointer;
+  border-radius:4px;
+}
+
+.vs-favorite:hover{
+  background:#f2f2f2;
+}
+.vs-name{
+  font-size:12px;
+  margin:6px 0 8px;
+  text-transform:uppercase;
+  color:#000;
+}
+.vs-favorite{
+  margin-top:10px;
+  width:44px;
+  height:44px;
+  border:3px solid #000;
+  background:#fff;
+  border-radius:4px;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.vs-favorite:hover{
+  background:#f5f5f5;
+}
+
+.vs-favorite.is-favorite{
+  background:#ff4d4d;
+  color:#fff;
+}
+
+.vs-divider{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  font-weight:bold;
+}
+
+.vs-origin{
+  display: block;
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  padding: 4px 8px;
+  font-size: 10px;
+  font-weight: bold;
+  border-radius: 8px;
+  color: white;
+  z-index: 10;
+}
+
+.vs-origin.api{
+  background:#2ecc71;
+}
+
+.vs-origin.cache{
+  background:#3498db;
+}
+
+
+/* ===== CARDS ===== *//* CONTENEDOR DE LAS CARTAS */
+.vs-cards{
+  display:flex;                 /* 👈 una al lado de otra */
+  justify-content:center;       /* centradas */
+  align-items:center;
+  gap:100px;                     /* espacio entre cartas */
+  margin-top:20px;
+}
+
+/* CARTA */
+.vs-card{
+  width:140px;
+  height:170px;
+  background:#fff;
+  border:4px solid #111;
+  display:flex;                 /* 👈 centra la imagen */
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;              /* 👈 evita que se salga */
+  position:relative;
+}
+
+/* IMAGEN DEL POKÉMON */
+.vs-card img{
+  width:120px;
+  height:120px;
+  object-fit:contain;
+  margin-bottom:10px;
+}
+
+ /*Bloquea el texto en css*/
+.vs-card > img {
+  display:block;
+}
+.vs-card h3{
+  font-size:12px;
+  margin:8px 0 6px;
+  text-transform:uppercase;
+  color:#000;
+}
+
+
+.vs-placeholder{
+  font-size:36px;
+  font-weight:bold;
+}
+
+.vs-cross{
+  font-size:24px;
+}
+
+/* ===== RESULT ===== */
+.vs-result{
+  margin-top:20px;
+  background:#fff;
+  border:4px solid #111;
+  padding:12px;
+}
+
+
+/* ==================== ORIGEN DE DATOS ==================== */
+.data-origin{
+  position:absolute;
+
+  right:8px;
+  padding:4px 8px;
+  font-size:11px;
+  font-weight:bold;
+  border:2px solid #222;
+  border-radius:6px;
+  z-index:10;
+}
+
+.from-api{
+  background:#4ddbd3;
+}
+
+.from-cache{
+  background: #ffcc00;
+  top:3px;
+  right:10px;
+  
+}
