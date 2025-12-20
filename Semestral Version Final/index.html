@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PokéFinder</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  
+  <!-- Fondo de Pokébola -->
+  <div class="pokeball-bg">
+    <div class="pokeball">
+      <div class="pokeball-top"></div>
+      <div class="pokeball-middle"></div>
+      <div class="pokeball-bottom"></div>
+      <div class="pokeball-center"></div>
+    </div>
+  </div>
+
+  <main class="app">
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="title">POKÉMON FINDER</h1>
+    </header>
+
+    <!-- Menú de navegación -->
+    <nav class="menu">
+      <button class="menu-item menu-active" id="menuBuscar">
+        🔍 <span>Buscar</span>
+      </button>
+      <button class="menu-item" id="menuHistorico">
+        📜 <span>Histórico</span>
+      </button>
+      <button class="menu-item" id="menuVS">
+        ⚔️ <span>VS</span>
+      </button>
+      <button class="menu-item" id="menuFavoritos">
+        ❤️ <span>Favoritos</span>
+      </button>
+    </nav>
+
+    <!-- ========== VISTA: BUSCAR ========== -->
+    <section class="search-area" id="searchArea">
+      
+      <!-- Selector de tipo de búsqueda -->
+      <button class="btn-type" id="btnToggleSearch">
+        🔖 <span id="searchTypeLabel">POKÉMON</span>
+      </button>
+
+      <div class="input-wrapper">
+        <input
+          type="text"
+          id="pokemonInput"
+          placeholder="Nombre o ID..."
+        >
+        <div class="arrow-buttons">
+          <button class="arrow-btn" id="btnArrowUp">▲</button>
+          <button class="arrow-btn" id="btnArrowDown">▼</button>
+        </div>
+      </div>
+
+      <button class="btn-search" id="btnBuscar">Buscar</button>
+    </section>
+
+    <!-- Resultado de búsqueda -->
+    <section class="result" id="resultado">
+      <div class="empty-state">
+        <p>🔍 Busca un Pokémon por nombre o número</p>
+      </div>
+    </section>
+
+    <!-- ========== VISTA: HISTÓRICO ========== -->
+    <section class="history-view" id="historyView" style="display:none;">
+      <header class="section-header">
+        <span class="section-icon">📜</span>
+        <h2 class="section-title">HISTÓRICO</h2>
+      </header>
+      <div id="historyList"></div>
+      <div class="no-items" id="noHistory">
+        <p>No has buscado Pokémon aún</p>
+      </div>
+      <button class="btn-clear" id="btnClearHistory" style="display:none;">
+        🗑️ LIMPIAR TODO
+      </button>
+    </section>
+
+    <!-- ========== VISTA: VS BATTLE ========== -->
+    <section class="vs-view" id="vsView" style="display:none;">
+      
+      <header class="section-header">
+        <span class="section-icon">⚔️</span>
+        <h2 class="section-title">POKÉMON VS</h2>
+      </header>
+
+      <!-- Inputs de búsqueda -->
+      <div class="vs-search">
+        <div class="vs-input-group">
+          <input type="text" id="vsInput1" placeholder="Pokémon 1">
+          <button id="btnVsBuscar1">BUSCAR</button>
+        </div>
+        <div class="vs-input-group">
+          <input type="text" id="vsInput2" placeholder="Pokémon 2">
+          <button id="btnVsBuscar2">BUSCAR</button>
+        </div>
+      </div>
+
+      <!-- Botón de batalla -->
+      <button class="btn-battle" id="btnBattle">⚔️ ¡BATALLAR!</button>
+
+      <!-- Tarjetas de los Pokémon -->
+      <div class="vs-cards">
+        <div class="vs-card" id="vsPokemon1">
+          <div class="vs-placeholder">?</div>
+        </div>
+        
+        <div class="vs-divider">VS</div>
+        
+        <div class="vs-card" id="vsPokemon2">
+          <div class="vs-placeholder">?</div>
+        </div>
+      </div>
+
+      <!-- Resultado de la batalla -->
+      <div class="vs-result" id="vsResult"></div>
+
+    </section>
+
+    <!-- ========== VISTA: FAVORITOS ========== -->
+    <section class="favorites-view" id="favoritesView" style="display:none;">
+      
+      <header class="section-header">
+        <span class="section-icon">❤️</span>
+        <h2 class="section-title">FAVORITOS</h2>
+      </header>
+
+      <div id="favoritesList"></div>
+
+      <div class="no-items" id="noFavorites">
+        <p>❤️</p>
+        <p><strong>NO TIENES POKÉMONES FAVORITOS</strong></p>
+        <p>Busca un Pokémon y presiona el botón ❤️ para agregarlo</p>
+      </div>
+
+      <button class="btn-clear" id="btnClearFavorites" style="display:none;">
+        🗑️ LIMPIAR TODO
+      </button>
+
+    </section>
+
+  </main>
+
+  <!-- Template para tarjeta de Pokémon -->
+  <template id="pokemon-template">
+    <article class="pokemon-card">
+      
+      <!-- Badge de origen de datos -->
+      <span class="data-origin"></span>
+      
+      <!-- Label "POKEMON_DATA" -->
+      <span class="pokemon-data-label">POKEMON_DATA</span>
+
+      <!-- Imagen del Pokémon -->
+      <div class="image-container">
+        <div class="pokemon-bg"></div>
+        <img class="pokemon-image" src="" alt="">
+      </div>
+
+      <!-- Info básica -->
+      <div class="pokemon-info">
+        <div class="pokemon-name-id">
+          <span class="pokemon-id">#001</span>
+          <span class="pokemon-name">BULBASAUR</span>
+        </div>
+        <div class="pokemon-divider"></div>
+      </div>
+
+      <!-- Tipos -->
+      <div class="types-container"></div>
+
+      <!-- Estadísticas -->
+      <div class="stats-section">
+        <h3 class="stats-title">ESTADÍSTICAS</h3>
+        
+        <div class="stat-row">
+          <span class="stat-label">HP:</span>
+          <div class="stat-bar-container">
+            <div class="stat-bar"></div>
+          </div>
+          <span class="stat-value">0</span>
+        </div>
+
+        <div class="stat-row">
+          <span class="stat-label">ATTACK:</span>
+          <div class="stat-bar-container">
+            <div class="stat-bar"></div>
+          </div>
+          <span class="stat-value">0</span>
+        </div>
+
+        <div class="stat-row">
+          <span class="stat-label">DEFENSE:</span>
+          <div class="stat-bar-container">
+            <div class="stat-bar"></div>
+          </div>
+          <span class="stat-value">0</span>
+        </div>
+
+        <div class="stat-row">
+          <span class="stat-label">SP.ATK:</span>
+          <div class="stat-bar-container">
+            <div class="stat-bar"></div>
+          </div>
+          <span class="stat-value">0</span>
+        </div>
+
+        <div class="stat-row">
+          <span class="stat-label">SP.DEF:</span>
+          <div class="stat-bar-container">
+            <div class="stat-bar"></div>
+          </div>
+          <span class="stat-value">0</span>
+        </div>
+
+        <div class="stat-row">
+          <span class="stat-label">SPEED:</span>
+          <div class="stat-bar-container">
+            <div class="stat-bar"></div>
+          </div>
+          <span class="stat-value">0</span>
+        </div>
+      </div>
+
+      <!-- Botón de favorito -->
+      <button class="btn-favorite" id="btnFavorite">❤️</button>
+
+      <div class="favorite-divider"></div>
+
+      <!-- Cadena evolutiva -->
+      <section class="evolution-section">
+        <h3 class="evolution-title">CADENA DE EVOLUCIÓN</h3>
+        <div class="evolution-chain" id="evolutionChain"></div>
+        <div class="no-evolution" style="display:none;">
+          <p>Este Pokémon no tiene evoluciones conocidas</p>
+        </div>
+      </section>
+
+    </article>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
